@@ -229,11 +229,13 @@ POST /api/task-management/subtasks/{id:guid}/tags
 POST /api/task-management/tags/
 POST /api/task-management/tasks/
 POST /api/task-management/tasks/bulk
+POST /api/task-management/tasks/in-review
 POST /api/task-management/tasks/quick
 POST /api/task-management/tasks/{id:guid}/activity
 POST /api/task-management/tasks/{id:guid}/archive
 POST /api/task-management/tasks/{id:guid}/comments
 POST /api/task-management/tasks/{id:guid}/restore
+POST /api/task-management/tasks/{id:guid}/submit-review
 POST /api/task-management/tasks/{id:guid}/subtasks
 POST /api/task-management/tasks/{id:guid}/tags
 POST /api/tickets/
