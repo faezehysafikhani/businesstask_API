@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <RootNamespace>TM.Host.Api</RootNamespace>
+    <AssemblyName>TM.Host.Api</AssemblyName>
+  </PropertyGroup>
+
+  <!-- The host owns no domain logic: it only composes NexusCore packages (see docs/ARCHITECTURE.md). -->
+  <ItemGroup>
+    <PackageReference Include="Nexus.Bundles.Platform" Version="$(NexusCoreVersion)" />
+    <PackageReference Include="Nexus.TaskManagement" Version="$(NexusCoreVersion)" />
+    <PackageReference Include="Nexus.TaskManagement.Infrastructure" Version="$(NexusCoreVersion)" />
+    <PackageReference Include="Nexus.Integrations.TaskNotifications" Version="$(NexusCoreVersion)" />
+    <PackageReference Include="Nexus.Integrations.TaskReporting" Version="$(NexusCoreVersion)" />
+    <PackageReference Include="Nexus.Integrations.CalendarTasks" Version="$(NexusCoreVersion)" />
+    <PackageReference Include="Nexus.Integrations.CalendarOrgStructure" Version="$(NexusCoreVersion)" />
+    <PackageReference Include="Serilog.AspNetCore" Version="8.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="TM.Host.Tests" />
+  </ItemGroup>
+
+</Project>
