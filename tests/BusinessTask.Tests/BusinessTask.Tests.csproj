@@ -8,7 +8,7 @@
     <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\TM.Host.Api\TM.Host.Api.csproj" />
+    <ProjectReference Include="..\..\src\BusinessTask.Api\BusinessTask.Api.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="expected-routes.txt" CopyToOutputDirectory="PreserveNewest" />

@@ -11,7 +11,7 @@ A new product host. It owns no domain logic; it composes the NexusCore packages 
 | is a new independent feature (Requests, Timesheets, Automation) | a new `Nexus.*` module in Core |
 | only composes or configures | this host |
 
-## Composition (src/TM.Host.Api/TmHost.cs)
+## Composition (src/BusinessTask.Api/BusinessTaskHost.cs)
 `AddNexusPlatform` (identity, organization + structure, calendar + Iranian holidays, workflow, chat, events, ticketing, notifications)
 + `AddTaskManagement(+Infrastructure)` + bridges `TaskNotifications`, `TaskReporting`, `CalendarTasks`, `CalendarOrgStructure`.
 

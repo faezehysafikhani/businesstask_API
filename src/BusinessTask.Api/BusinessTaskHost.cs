@@ -10,16 +10,16 @@ using Nexus.TaskManagement.Infrastructure;
 using NexusCore.Infrastructure.Persistence;
 using Serilog;
 
-namespace TM.Host.Api;
+namespace BusinessTask.Api;
 
 /// <summary>
 /// The whole composition of the host, in three calls, so a test can build the same host without a database:
-/// <see cref="AddTmHost"/> (services), <see cref="UseTmHost"/> (pipeline and endpoints) and
-/// <see cref="InitializeTmHostAsync"/> (seed and schema, the only step that needs SQL Server).
+/// <see cref="AddBusinessTaskHost"/> (services), <see cref="UseBusinessTaskHost"/> (pipeline and endpoints) and
+/// <see cref="InitializeBusinessTaskHostAsync"/> (seed and schema, the only step that needs SQL Server).
 /// </summary>
-public static class TmHost
+public static class BusinessTaskHost
 {
-    public static WebApplicationBuilder AddTmHost(this WebApplicationBuilder builder)
+    public static WebApplicationBuilder AddBusinessTaskHost(this WebApplicationBuilder builder)
     {
         builder.Host.UseSerilog((context, configuration) =>
             configuration.ReadFrom.Configuration(context.Configuration).WriteTo.Console());
@@ -55,7 +55,7 @@ public static class TmHost
         return builder;
     }
 
-    public static WebApplication UseTmHost(this WebApplication app)
+    public static WebApplication UseBusinessTaskHost(this WebApplication app)
     {
         if (app.Environment.IsDevelopment())
         {
@@ -75,7 +75,7 @@ public static class TmHost
         return app;
     }
 
-    public static async Task InitializeTmHostAsync(this WebApplication app, CancellationToken cancellationToken = default)
+    public static async Task InitializeBusinessTaskHostAsync(this WebApplication app, CancellationToken cancellationToken = default)
     {
         await app.InitializeNexusPlatformAsync(cancellationToken);
 

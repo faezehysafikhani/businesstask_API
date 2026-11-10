@@ -4,10 +4,10 @@ using Microsoft.AspNetCore.Routing.Patterns;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using TM.Host.Api;
+using BusinessTask.Api;
 using Xunit;
 
-namespace TM.Host.Tests;
+namespace BusinessTask.Tests;
 
 /// <summary>
 /// Phase 1 acceptance for the host: it composes, needs no database to build, and exposes exactly the routes recorded in
@@ -19,9 +19,9 @@ public class HostCompositionTests
     {
         var builder = WebApplication.CreateBuilder(new WebApplicationOptions { EnvironmentName = Environments.Development });
         builder.Configuration["Database:SeedOnStartup"] = "false";
-        builder.AddTmHost();
+        builder.AddBusinessTaskHost();
         var app = builder.Build();
-        app.UseTmHost();
+        app.UseBusinessTaskHost();
         return app;
     }
 

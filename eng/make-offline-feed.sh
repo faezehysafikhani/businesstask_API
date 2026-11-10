@@ -9,7 +9,7 @@ FEED="$PWD/packages"; TMP="$(mktemp -d)"
 [ -n "$(ls "$FEED"/Nexus.TaskManagement.*.nupkg 2>/dev/null)" ] || { echo "Pack Core first (eng/pack-core.sh)"; exit 1; }
 
 # Restore with the offline feed + nuget.org into a scratch cache, then copy every downloaded .nupkg into the feed.
-dotnet restore TM.Host.sln --source "$FEED" --source https://api.nuget.org/v3/index.json --packages "$TMP"
+dotnet restore BusinessTask.sln --source "$FEED" --source https://api.nuget.org/v3/index.json --packages "$TMP"
 find "$TMP" -name '*.nupkg' -exec cp -n {} "$FEED"/ \;
 
 ( cd "$FEED" && sha256sum *.nupkg > SHA256SUMS.txt )
@@ -17,4 +17,4 @@ echo "feed: $(ls "$FEED"/*.nupkg | wc -l) packages"
 
 # Proof: a clean restore from the feed alone.
 rm -rf "$TMP"; TMP="$(mktemp -d)"
-dotnet restore TM.Host.sln --source "$FEED" --packages "$TMP" && echo "OFFLINE RESTORE OK"
+dotnet restore BusinessTask.sln --source "$FEED" --packages "$TMP" && echo "OFFLINE RESTORE OK"
