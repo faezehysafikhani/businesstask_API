@@ -15,6 +15,19 @@
     <PackageReference Include="Nexus.Calendar.Infrastructure" Version="$(NexusCoreVersion)" />
     <PackageReference Include="Nexus.Integrations.CalendarTasks" Version="$(NexusCoreVersion)" />
     <PackageReference Include="Nexus.Integrations.CalendarOrgStructure" Version="$(NexusCoreVersion)" />
+    <!-- Projects (phase 11): the charter, its team, its stakeholders, and the portfolio view. -->
+    <PackageReference Include="Nexus.ProjectManagement.Core" Version="$(NexusCoreVersion)" />
+    <PackageReference Include="Nexus.ProjectManagement.Core.Infrastructure" Version="$(NexusCoreVersion)" />
+    <PackageReference Include="Nexus.ProjectManagement.Team" Version="$(NexusCoreVersion)" />
+    <PackageReference Include="Nexus.ProjectManagement.Team.Infrastructure" Version="$(NexusCoreVersion)" />
+    <PackageReference Include="Nexus.ProjectManagement.Stakeholder" Version="$(NexusCoreVersion)" />
+    <PackageReference Include="Nexus.ProjectManagement.Stakeholder.Infrastructure" Version="$(NexusCoreVersion)" />
+    <!-- Portfolio combines projects and actions, so the action module comes with it. -->
+    <PackageReference Include="Nexus.Actions" Version="$(NexusCoreVersion)" />
+    <PackageReference Include="Nexus.Actions.Infrastructure" Version="$(NexusCoreVersion)" />
+    <PackageReference Include="Nexus.Portfolio" Version="$(NexusCoreVersion)" />
+    <PackageReference Include="Nexus.Integrations.ProjectVisibility" Version="$(NexusCoreVersion)" />
+    <PackageReference Include="Nexus.Integrations.ProjectDeletion" Version="$(NexusCoreVersion)" />
     <PackageReference Include="Serilog.AspNetCore" Version="8.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>

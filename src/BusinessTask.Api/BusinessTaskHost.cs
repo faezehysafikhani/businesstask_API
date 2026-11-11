@@ -1,10 +1,25 @@
 using Microsoft.OpenApi.Models;
+using Nexus.Actions;
+using Nexus.Actions.Infrastructure;
 using Nexus.Bundles;
 using Nexus.Calendar.Infrastructure.Meetings;
 using Nexus.Integrations.CalendarOrgStructure;
 using Nexus.Integrations.CalendarTasks;
+using Nexus.Integrations.ProjectDeletion;
+using Nexus.Integrations.ProjectVisibility;
 using Nexus.Integrations.TaskNotifications;
 using Nexus.Integrations.TaskReporting;
+using Nexus.Portfolio;
+using Nexus.Portfolio.Endpoints;
+using Nexus.ProjectManagement.Core;
+using Nexus.ProjectManagement.Core.Endpoints;
+using Nexus.ProjectManagement.Core.Infrastructure;
+using Nexus.ProjectManagement.StakeholderManagement;
+using Nexus.ProjectManagement.StakeholderManagement.Endpoints;
+using Nexus.ProjectManagement.StakeholderManagement.Infrastructure;
+using Nexus.ProjectManagement.Team;
+using Nexus.ProjectManagement.Team.Endpoints;
+using Nexus.ProjectManagement.Team.Infrastructure;
 using Nexus.TaskManagement;
 using Nexus.TaskManagement.Endpoints;
 using Nexus.TaskManagement.Infrastructure;
@@ -38,6 +53,21 @@ public static class BusinessTaskHost
         builder.Services.AddTaskReporting();
         builder.Services.AddCalendarTasksIntegration();
         builder.Services.AddCalendarOrgStructureIntegration();
+
+        // Projects (phase 11): the project charter, the team of a project, its stakeholders (with the
+        // power/interest matrix) and the portfolio view. Portfolio combines projects and actions, so
+        // the action module comes with it; the bridges stay in Core.
+        builder.Services.AddProjectManagementCore(o => o.RequireUniqueName = true);
+        builder.Services.AddProjectManagementCoreInfrastructure(builder.Configuration);
+        builder.Services.AddProjectTeam();
+        builder.Services.AddProjectTeamInfrastructure(builder.Configuration);
+        builder.Services.AddStakeholderManagement();
+        builder.Services.AddStakeholderManagementInfrastructure(builder.Configuration);
+        builder.Services.AddActionManagement();
+        builder.Services.AddActionManagementInfrastructure(builder.Configuration);
+        builder.Services.AddPortfolio();
+        builder.Services.AddProjectVisibilityIntegration();
+        builder.Services.AddProjectDeletionIntegration();
 
         builder.Services.ConfigureHttpJsonOptions(o =>
             o.SerializerOptions.Converters.Add(new System.Text.Json.Serialization.JsonStringEnumConverter()));
@@ -81,6 +111,12 @@ public static class BusinessTaskHost
         app.MapMeetingEndpoints();
         app.MapCalendarTasksEndpoints();
         app.MapTaskReportEndpoints();
+
+        // Projects (phase 11)
+        app.MapProjectEndpoints();
+        app.MapTeamEndpoints();
+        app.MapStakeholderEndpoints();
+        app.MapPortfolioEndpoints();
         return app;
     }
 
@@ -96,6 +132,17 @@ public static class BusinessTaskHost
                 scope.ServiceProvider.GetRequiredService<TaskManagementDbContext>(), cancellationToken);
             await ModuleSchemaInitializer.EnsureCreatedAsync(
                 scope.ServiceProvider.GetRequiredService<MeetingDbContext>(), cancellationToken);
+
+            // Projects (phase 11): one schema per module, then the patchers that bring an older
+            // database up to date (creating tables never adds a column to an existing one).
+            var sp = scope.ServiceProvider;
+            await ModuleSchemaInitializer.EnsureCreatedAsync(sp.GetRequiredService<ProjectManagementCoreDbContext>(), cancellationToken);
+            await ModuleSchemaInitializer.EnsureCreatedAsync(sp.GetRequiredService<TeamDbContext>(), cancellationToken);
+            await ModuleSchemaInitializer.EnsureCreatedAsync(sp.GetRequiredService<StakeholderManagementDbContext>(), cancellationToken);
+            await ModuleSchemaInitializer.EnsureCreatedAsync(sp.GetRequiredService<ActionsDbContext>(), cancellationToken);
+            await StakeholderSchemaUpgrade.EnsureCurrentAsync(sp.GetRequiredService<StakeholderManagementDbContext>(), cancellationToken);
+            await ActionsSchemaUpgrade.EnsureCurrentAsync(sp.GetRequiredService<ActionsDbContext>(), cancellationToken);
+            await ActionsPlanningSchemaUpgrade.EnsureCurrentAsync(sp.GetRequiredService<ActionsDbContext>(), cancellationToken);
         }
     }
 }

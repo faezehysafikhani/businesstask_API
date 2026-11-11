@@ -13,7 +13,11 @@ A new product host. It owns no domain logic; it composes the NexusCore packages 
 
 ## Composition (src/BusinessTask.Api/BusinessTaskHost.cs)
 `AddNexusPlatform` (identity, organization + structure, calendar + Iranian holidays, workflow, chat, events, ticketing, notifications)
-+ `AddTaskManagement(+Infrastructure)` + bridges `TaskNotifications`, `TaskReporting`, `CalendarTasks`, `CalendarOrgStructure`.
++ `AddTaskManagement(+Infrastructure)` + bridges `TaskNotifications`, `TaskReporting`, `CalendarTasks`, `CalendarOrgStructure`
++ (phase 11) `AddProjectManagementCore(+Infrastructure)`, `AddProjectTeam(+Infrastructure)`, `AddStakeholderManagement(+Infrastructure)`,
+`AddActionManagement(+Infrastructure)` (Portfolio combines projects and actions), `AddPortfolio` and the bridges
+`ProjectVisibility` (who may see which project) and `ProjectDeletion` (what a delete must refuse).
+Each module has its own schema; the host creates them and runs the module patchers on startup.
 
 ## Rules
 * Core version is one number: `NexusCoreVersion` in `Directory.Build.props`.
