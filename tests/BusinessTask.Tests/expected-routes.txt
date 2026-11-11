@@ -36,6 +36,7 @@ DELETE /api/task-management/files/{linkId:guid}
 DELETE /api/task-management/membership/
 DELETE /api/task-management/notes/{id:guid}
 DELETE /api/task-management/repetitive-tasks/{id:guid}
+DELETE /api/task-management/report-subscriptions/{id:guid}
 DELETE /api/task-management/statuses/{id:guid}
 DELETE /api/task-management/subtasks/{id:guid}
 DELETE /api/task-management/subtasks/{id:guid}/tags/{tagId:guid}
@@ -152,6 +153,7 @@ GET /api/task-management/notes/{id:guid}
 GET /api/task-management/reminder-settings/
 GET /api/task-management/repetitive-tasks/
 GET /api/task-management/repetitive-tasks/{id:guid}
+GET /api/task-management/report-subscriptions/
 GET /api/task-management/requests/
 GET /api/task-management/requests/categories
 GET /api/task-management/statuses/
@@ -255,6 +257,8 @@ POST /api/org-structure/unit-positions/{id:guid}/appointment/end
 POST /api/org-structure/units/{unitId:guid}/positions
 POST /api/organization/units/
 POST /api/platform/csp-report
+POST /api/platform/ldap/sync
+POST /api/platform/ldap/sync/preview
 POST /api/platform/ldap/test
 POST /api/platform/notification-channels/test-sms
 POST /api/platform/tenants/
@@ -266,6 +270,7 @@ POST /api/task-management/notes/
 POST /api/task-management/repetitive-tasks/
 POST /api/task-management/repetitive-tasks/{id:guid}/disable
 POST /api/task-management/repetitive-tasks/{id:guid}/enable
+POST /api/task-management/report-subscriptions/
 POST /api/task-management/requests/
 POST /api/task-management/requests/categories
 POST /api/task-management/requests/{id:guid}/convert
@@ -276,6 +281,8 @@ POST /api/task-management/tags/
 POST /api/task-management/tasks/
 POST /api/task-management/tasks/bulk
 POST /api/task-management/tasks/from-message
+POST /api/task-management/tasks/import
+POST /api/task-management/tasks/import/preview
 POST /api/task-management/tasks/in-review
 POST /api/task-management/tasks/quick
 POST /api/task-management/tasks/{id:guid}/activity
@@ -372,6 +379,7 @@ PUT /api/task-management/membership/retention
 PUT /api/task-management/notes/{id:guid}
 PUT /api/task-management/reminder-settings/
 PUT /api/task-management/repetitive-tasks/{id:guid}
+PUT /api/task-management/report-subscriptions/{id:guid}
 PUT /api/task-management/requests/categories/{id:guid}
 PUT /api/task-management/statuses/{id:guid}
 PUT /api/task-management/subtasks/{id:guid}

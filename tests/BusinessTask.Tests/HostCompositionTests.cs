@@ -89,6 +89,37 @@ public class HostCompositionTests
     }
 
     [Theory]
+    [InlineData(CspMode.ReportOnly, "Content-Security-Policy-Report-Only")]
+    [InlineData(CspMode.Enforce, "Content-Security-Policy")]
+    public async Task TheApi_SendsItsContentSecurityPolicy_InTheChosenMode(CspMode mode, string header)
+    {
+        var middleware = new SecurityHeadersMiddleware(ctx => Task.CompletedTask, Microsoft.Extensions.Options.Options.Create(new CspOptions { Mode = mode }));
+        var context = new Microsoft.AspNetCore.Http.DefaultHttpContext();
+        context.Request.Path = "/api/task-management/tasks";
+        await middleware.InvokeAsync(context);
+
+        Assert.Contains("default-src 'none'", context.Response.Headers[header].ToString());
+        Assert.Contains("report-uri /api/platform/csp-report", context.Response.Headers[header].ToString());
+        Assert.Equal("nosniff", context.Response.Headers["X-Content-Type-Options"]);
+        // Only one of the two headers.
+        Assert.Single(new[] { "Content-Security-Policy", "Content-Security-Policy-Report-Only" }, context.Response.Headers.ContainsKey);
+    }
+
+    [Fact]
+    public async Task OffAndSwagger_SendNoPolicy()
+    {
+        foreach (var (mode, path) in new[] { (CspMode.Off, "/api/x"), (CspMode.Enforce, "/swagger/index.html") })
+        {
+            var context = new Microsoft.AspNetCore.Http.DefaultHttpContext();
+            context.Request.Path = path;
+            await new SecurityHeadersMiddleware(ctx => Task.CompletedTask, Microsoft.Extensions.Options.Options.Create(new CspOptions { Mode = mode })).InvokeAsync(context);
+    
+            Assert.False(context.Response.Headers.ContainsKey("Content-Security-Policy"));
+            Assert.False(context.Response.Headers.ContainsKey("Content-Security-Policy-Report-Only"));
+        }
+    }
+
+    [Theory]
     [InlineData("/api/task-management/tasks")]
     [InlineData("/api/task-reports/tasks")]
     [InlineData("/api/org-structure/nodes")]

@@ -42,6 +42,8 @@ public static class BusinessTaskHost
         builder.Services.ConfigureHttpJsonOptions(o =>
             o.SerializerOptions.Converters.Add(new System.Text.Json.Serialization.JsonStringEnumConverter()));
 
+        builder.Services.Configure<CspOptions>(builder.Configuration.GetSection(CspOptions.SectionName));
+
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen(o =>
         {
@@ -68,6 +70,7 @@ public static class BusinessTaskHost
         }
 
         app.UseSerilogRequestLogging();
+        app.UseMiddleware<SecurityHeadersMiddleware>();
         app.UseNexusPlatform();
 
         app.MapGet("/", () => Results.Redirect("/swagger")).ExcludeFromDescription();
