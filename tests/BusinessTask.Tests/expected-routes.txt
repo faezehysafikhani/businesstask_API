@@ -255,6 +255,8 @@ POST /api/org-structure/unit-positions/{id:guid}/appointment
 POST /api/org-structure/unit-positions/{id:guid}/appointment/cancel
 POST /api/org-structure/unit-positions/{id:guid}/appointment/end
 POST /api/org-structure/units/{unitId:guid}/positions
+POST /api/org-structure/users/{userId:guid}/offboard
+POST /api/org-structure/users/{userId:guid}/transfer
 POST /api/organization/units/
 POST /api/platform/csp-report
 POST /api/platform/ldap/sync
