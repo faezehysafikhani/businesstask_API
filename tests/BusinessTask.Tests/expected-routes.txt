@@ -28,6 +28,7 @@ DELETE /api/org-structure/titles/{id:guid}
 DELETE /api/org-structure/unit-positions/{id:guid}
 DELETE /api/org-structure/unit-positions/{id:guid}/appointment
 DELETE /api/organization/units/{id:guid}
+DELETE /api/task-management/automation/rules/{id:guid}
 DELETE /api/task-management/comments/{id:guid}
 DELETE /api/task-management/files/{linkId:guid}
 DELETE /api/task-management/notes/{id:guid}
@@ -132,6 +133,8 @@ GET /api/platform/tenants/
 GET /api/platform/upload-policy
 GET /api/task-management/assignable-posts
 GET /api/task-management/assignment-limit
+GET /api/task-management/automation/log
+GET /api/task-management/automation/rules
 GET /api/task-management/files/{fileId:guid}/content
 GET /api/task-management/notes/
 GET /api/task-management/notes/{id:guid}
@@ -230,6 +233,7 @@ POST /api/platform/csp-report
 POST /api/platform/ldap/test
 POST /api/platform/notification-channels/test-sms
 POST /api/platform/tenants/
+POST /api/task-management/automation/rules
 POST /api/task-management/files/comments/{commentId:guid}
 POST /api/task-management/files/subtasks/{subTaskId:guid}
 POST /api/task-management/files/tasks/{taskId:guid}
@@ -331,6 +335,7 @@ PUT /api/platform/notification-channels/
 PUT /api/platform/notification-channels/quiet-hours
 PUT /api/platform/notification-channels/templates
 PUT /api/platform/settings
+PUT /api/task-management/automation/rules/{id:guid}
 PUT /api/task-management/comments/{id:guid}
 PUT /api/task-management/notes/{id:guid}
 PUT /api/task-management/reminder-settings/
