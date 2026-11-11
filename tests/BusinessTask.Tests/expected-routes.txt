@@ -32,6 +32,7 @@ DELETE /api/organization/units/{id:guid}
 DELETE /api/task-management/automation/rules/{id:guid}
 DELETE /api/task-management/comments/{id:guid}
 DELETE /api/task-management/files/{linkId:guid}
+DELETE /api/task-management/membership/
 DELETE /api/task-management/notes/{id:guid}
 DELETE /api/task-management/repetitive-tasks/{id:guid}
 DELETE /api/task-management/statuses/{id:guid}
@@ -44,6 +45,7 @@ DELETE /api/task-management/tasks/{id:guid}/dependencies/{blockedByTaskId:guid}
 DELETE /api/task-management/tasks/{id:guid}/tags/{tagId:guid}
 DELETE /api/task-management/templates/{id:guid}
 DELETE /api/task-management/timesheets/entries/{id:guid}
+DELETE /api/task-management/webhooks/{id:guid}
 DELETE /api/workflow/definitions/{id:guid}/steps/{stepId:guid}
 GET /
 GET /api/calendar/meetings/
@@ -141,6 +143,8 @@ GET /api/task-management/assignment-limit
 GET /api/task-management/automation/log
 GET /api/task-management/automation/rules
 GET /api/task-management/files/{fileId:guid}/content
+GET /api/task-management/membership/
+GET /api/task-management/membership/retention
 GET /api/task-management/notes/
 GET /api/task-management/notes/{id:guid}
 GET /api/task-management/reminder-settings/
@@ -164,6 +168,9 @@ GET /api/task-management/templates/
 GET /api/task-management/timesheets/timer
 GET /api/task-management/timesheets/week
 GET /api/task-management/timesheets/workload
+GET /api/task-management/webhooks/
+GET /api/task-management/webhooks/events
+GET /api/task-management/webhooks/{id:guid}/deliveries
 GET /api/task-management/wip/
 GET /api/task-reports/scope
 GET /api/task-reports/tasks
@@ -279,6 +286,9 @@ POST /api/task-management/timesheets/in-review
 POST /api/task-management/timesheets/submit
 POST /api/task-management/timesheets/timer/start
 POST /api/task-management/timesheets/timer/stop
+POST /api/task-management/webhooks/
+POST /api/task-management/webhooks/{id:guid}/ping
+POST /api/task-management/webhooks/{id:guid}/rotate-secret
 POST /api/tickets/
 POST /api/tickets/{ticketId:guid}/comments
 POST /api/workflow/approval-center/for-subjects
@@ -346,6 +356,8 @@ PUT /api/platform/notification-channels/templates
 PUT /api/platform/settings
 PUT /api/task-management/automation/rules/{id:guid}
 PUT /api/task-management/comments/{id:guid}
+PUT /api/task-management/membership/
+PUT /api/task-management/membership/retention
 PUT /api/task-management/notes/{id:guid}
 PUT /api/task-management/reminder-settings/
 PUT /api/task-management/repetitive-tasks/{id:guid}
@@ -360,6 +372,7 @@ PUT /api/task-management/tasks/{id:guid}/criteria/{criterionId:guid}/met
 PUT /api/task-management/tasks/{id:guid}/estimate
 PUT /api/task-management/templates/{id:guid}
 PUT /api/task-management/timesheets/entries/{id:guid}
+PUT /api/task-management/webhooks/{id:guid}
 PUT /api/task-management/wip/
 PUT /api/tickets/{ticketId:guid}/assign
 PUT /api/tickets/{ticketId:guid}/priority

@@ -4,7 +4,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <!-- One place to move every NexusCore package at once. -->
-    <NexusCoreVersion>0.1.0.1405081910-ux</NexusCoreVersion>
+    <NexusCoreVersion>0.1.0.1405081911-ux</NexusCoreVersion>
     <NuGetAudit>false</NuGetAudit>
   </PropertyGroup>
 </Project>
