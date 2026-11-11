@@ -41,6 +41,7 @@ DELETE /api/task-management/tasks/{id:guid}/criteria/{criterionId:guid}
 DELETE /api/task-management/tasks/{id:guid}/dependencies/{blockedByTaskId:guid}
 DELETE /api/task-management/tasks/{id:guid}/tags/{tagId:guid}
 DELETE /api/task-management/templates/{id:guid}
+DELETE /api/task-management/timesheets/entries/{id:guid}
 DELETE /api/workflow/definitions/{id:guid}/steps/{stepId:guid}
 GET /
 GET /api/calendar/work-calendars/
@@ -150,7 +151,11 @@ GET /api/task-management/tasks/{id:guid}/comments
 GET /api/task-management/tasks/{id:guid}/files
 GET /api/task-management/tasks/{id:guid}/planning
 GET /api/task-management/tasks/{id:guid}/subtasks
+GET /api/task-management/tasks/{id:guid}/time
 GET /api/task-management/templates/
+GET /api/task-management/timesheets/timer
+GET /api/task-management/timesheets/week
+GET /api/task-management/timesheets/workload
 GET /api/task-management/wip/
 GET /api/task-reports/scope
 GET /api/task-reports/tasks
@@ -257,6 +262,11 @@ POST /api/task-management/tasks/{id:guid}/subtasks/bulk
 POST /api/task-management/tasks/{id:guid}/tags
 POST /api/task-management/templates/
 POST /api/task-management/templates/{id:guid}/instantiate
+POST /api/task-management/timesheets/entries
+POST /api/task-management/timesheets/in-review
+POST /api/task-management/timesheets/submit
+POST /api/task-management/timesheets/timer/start
+POST /api/task-management/timesheets/timer/stop
 POST /api/tickets/
 POST /api/tickets/{ticketId:guid}/comments
 POST /api/workflow/approval-center/for-subjects
@@ -333,7 +343,9 @@ PUT /api/task-management/tasks/{id:guid}
 PUT /api/task-management/tasks/{id:guid}/blocker
 PUT /api/task-management/tasks/{id:guid}/criteria/{criterionId:guid}
 PUT /api/task-management/tasks/{id:guid}/criteria/{criterionId:guid}/met
+PUT /api/task-management/tasks/{id:guid}/estimate
 PUT /api/task-management/templates/{id:guid}
+PUT /api/task-management/timesheets/entries/{id:guid}
 PUT /api/task-management/wip/
 PUT /api/tickets/{ticketId:guid}/assign
 PUT /api/tickets/{ticketId:guid}/priority
