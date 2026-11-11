@@ -1,5 +1,6 @@
 using Microsoft.OpenApi.Models;
 using Nexus.Bundles;
+using Nexus.Calendar.Infrastructure.Meetings;
 using Nexus.Integrations.CalendarOrgStructure;
 using Nexus.Integrations.CalendarTasks;
 using Nexus.Integrations.TaskNotifications;
@@ -26,6 +27,9 @@ public static class BusinessTaskHost
 
         // Platform: identity, organization + structure, calendar (+ Iranian holidays), workflow, chat, events, ticketing, notifications.
         builder.Services.AddNexusPlatform(builder.Configuration, builder.Environment);
+
+        // Meetings (their minutes become tasks through the CalendarTasks bridge below). Before the bridges: they replace its placeholders.
+        builder.Services.AddCalendarMeetings(builder.Configuration);
 
         // Task management and the bridges that connect it to the platform. Bridges live in Core, never here.
         builder.Services.AddTaskManagement();
@@ -71,6 +75,8 @@ public static class BusinessTaskHost
 
         app.MapNexusPlatform();
         app.MapTaskManagementEndpoints();
+        app.MapMeetingEndpoints();
+        app.MapCalendarTasksEndpoints();
         app.MapTaskReportEndpoints();
         return app;
     }
@@ -85,6 +91,8 @@ public static class BusinessTaskHost
             using var scope = app.Services.CreateScope();
             await ModuleSchemaInitializer.EnsureCreatedAsync(
                 scope.ServiceProvider.GetRequiredService<TaskManagementDbContext>(), cancellationToken);
+            await ModuleSchemaInitializer.EnsureCreatedAsync(
+                scope.ServiceProvider.GetRequiredService<MeetingDbContext>(), cancellationToken);
         }
     }
 }

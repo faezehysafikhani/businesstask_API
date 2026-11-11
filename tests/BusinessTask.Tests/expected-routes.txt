@@ -4,6 +4,7 @@ ANY /hubs/notifications
 ANY /hubs/notifications/negotiate
 ANY /hubs/task-management
 ANY /hubs/task-management/negotiate
+DELETE /api/calendar/meetings/{id:guid}
 DELETE /api/calendar/work-calendars/{id:guid}
 DELETE /api/calendar/work-calendars/{id:guid}/exceptions/{exceptionId:guid}
 DELETE /api/chat/messages/{messageId:guid}
@@ -45,6 +46,10 @@ DELETE /api/task-management/templates/{id:guid}
 DELETE /api/task-management/timesheets/entries/{id:guid}
 DELETE /api/workflow/definitions/{id:guid}/steps/{stepId:guid}
 GET /
+GET /api/calendar/meetings/
+GET /api/calendar/meetings/people-options
+GET /api/calendar/meetings/task-options
+GET /api/calendar/meetings/{id:guid}
 GET /api/calendar/work-calendars/
 GET /api/calendar/work-calendars/official-holidays
 GET /api/calendar/work-calendars/{id:guid}
@@ -176,6 +181,9 @@ PATCH /api/task-management/tasks/{id:guid}/assigned-user
 PATCH /api/task-management/tasks/{id:guid}/assigned-user-group
 PATCH /api/task-management/tasks/{id:guid}/priority
 PATCH /api/task-management/tasks/{id:guid}/status
+POST /api/calendar/meetings/
+POST /api/calendar/meetings/{id:guid}/actions/convert-all
+POST /api/calendar/meetings/{id:guid}/actions/{index:int}/convert-to-task
 POST /api/calendar/work-calendars/
 POST /api/calendar/work-calendars/{id:guid}/exceptions
 POST /api/chat/conversations/direct
@@ -281,6 +289,7 @@ POST /api/workflow/definitions/{id:guid}/reset-to-default
 POST /api/workflow/definitions/{id:guid}/steps
 POST /api/workflow/delegations/
 POST /api/workflow/delegations/{id:guid}/revoke
+PUT /api/calendar/meetings/{id:guid}
 PUT /api/calendar/work-calendars/{id:guid}
 PUT /api/chat/messages/{messageId:guid}
 PUT /api/events/{id:guid}

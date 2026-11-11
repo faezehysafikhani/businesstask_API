@@ -12,6 +12,7 @@
     <PackageReference Include="Nexus.TaskManagement.Infrastructure" Version="$(NexusCoreVersion)" />
     <PackageReference Include="Nexus.Integrations.TaskNotifications" Version="$(NexusCoreVersion)" />
     <PackageReference Include="Nexus.Integrations.TaskReporting" Version="$(NexusCoreVersion)" />
+    <PackageReference Include="Nexus.Calendar.Infrastructure" Version="$(NexusCoreVersion)" />
     <PackageReference Include="Nexus.Integrations.CalendarTasks" Version="$(NexusCoreVersion)" />
     <PackageReference Include="Nexus.Integrations.CalendarOrgStructure" Version="$(NexusCoreVersion)" />
     <PackageReference Include="Serilog.AspNetCore" Version="8.0.0" />

@@ -77,10 +77,23 @@ public class HostCompositionTests
         Assert.Empty(unprotected);
     }
 
+    [Fact]
+    public void TheWorkCalendar_DecidesWhichDaysCount_AndTheMeetingsBridgeIsWired()
+    {
+        using var app = BuildHost();
+        using var scope = app.Services.CreateScope();
+        // The calendar's policy (Fridays and the official Iranian holidays are not working days) wins over the task module's allow-all.
+        Assert.IsType<Nexus.Calendar.Application.IranSchedulingDayPolicy>(scope.ServiceProvider.GetRequiredService<NexusCore.Application.Common.ISchedulingDayPolicy>());
+        Assert.IsType<Nexus.Integrations.CalendarTasks.MeetingTaskDirectory>(scope.ServiceProvider.GetRequiredService<Nexus.Calendar.Application.Meetings.IMeetingTaskDirectory>());
+        Assert.NotNull(scope.ServiceProvider.GetRequiredService<Nexus.Integrations.CalendarTasks.MeetingActionConverter>());
+    }
+
     [Theory]
     [InlineData("/api/task-management/tasks")]
     [InlineData("/api/task-reports/tasks")]
     [InlineData("/api/org-structure/nodes")]
+    [InlineData("/api/calendar/meetings")]
+    [InlineData("/api/calendar/work-calendars")]
     [InlineData("/hubs/chat")]
     [InlineData("/hubs/notifications")]
     public void KeyModules_AreMapped(string prefix)
