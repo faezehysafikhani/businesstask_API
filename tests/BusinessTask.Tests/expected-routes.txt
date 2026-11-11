@@ -12,6 +12,7 @@ DELETE /api/events/{id:guid}
 DELETE /api/identity/auth/sessions/{sessionId:guid}
 DELETE /api/identity/groups/mine/{groupId:guid}
 DELETE /api/identity/groups/{groupId:guid}
+DELETE /api/identity/service-accounts/{id:guid}/api-keys/{keyId:guid}
 DELETE /api/identity/users/{userId:guid}
 DELETE /api/identity/users/{userId:guid}/sessions
 DELETE /api/identity/users/{userId:guid}/sessions/{sessionId:guid}
@@ -78,6 +79,7 @@ GET /api/identity/groups/{groupId:guid}
 GET /api/identity/permissions
 GET /api/identity/presence
 GET /api/identity/roles/
+GET /api/identity/service-accounts/
 GET /api/identity/sessions/policy
 GET /api/identity/users/
 GET /api/identity/users/{userId:guid}/permissions
@@ -202,13 +204,18 @@ POST /api/chat/messages/{messageId:guid}/read
 POST /api/chat/teams/{teamId:guid}/messages
 POST /api/chat/teams/{teamId:guid}/read
 POST /api/events/
+POST /api/identity/auth/api-key/token
 POST /api/identity/auth/captcha
 POST /api/identity/auth/forgot-password
 POST /api/identity/auth/forgot-password/verify
 POST /api/identity/auth/login
 POST /api/identity/auth/login/complete
+POST /api/identity/auth/login/mfa
 POST /api/identity/auth/logout
 POST /api/identity/auth/logout-all
+POST /api/identity/auth/me/mfa/confirm-enable
+POST /api/identity/auth/me/mfa/disable
+POST /api/identity/auth/me/mfa/request-enable
 POST /api/identity/auth/me/phone/confirm
 POST /api/identity/auth/me/phone/request
 POST /api/identity/auth/refresh
@@ -218,8 +225,11 @@ POST /api/identity/auth/sessions/revoke-others
 POST /api/identity/groups/
 POST /api/identity/groups/mine/
 POST /api/identity/roles/
+POST /api/identity/service-accounts/
+POST /api/identity/service-accounts/{id:guid}/api-keys
 POST /api/identity/sessions/revoke-all
 POST /api/identity/users/
+POST /api/identity/users/{userId:guid}/mfa/reset
 POST /api/org-structure/auto-link-rules/apply
 POST /api/org-structure/auto-link-rules/preview
 POST /api/org-structure/companies
@@ -316,6 +326,7 @@ PUT /api/identity/roles/{roleId:guid}
 PUT /api/identity/roles/{roleId:guid}/permissions
 PUT /api/identity/sessions/policy
 PUT /api/identity/users/{userId:guid}
+PUT /api/identity/users/{userId:guid}/kind
 PUT /api/identity/users/{userId:guid}/permissions
 PUT /api/identity/users/{userId:guid}/roles
 PUT /api/notifications/read-all
