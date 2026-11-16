@@ -144,6 +144,7 @@ GET /api/platform/notification-channels/
 GET /api/platform/notification-channels/providers
 GET /api/platform/notification-channels/quiet-hours
 GET /api/platform/notification-channels/templates
+GET /api/platform/password-policy
 GET /api/platform/settings
 GET /api/platform/tenants/
 GET /api/platform/upload-policy
@@ -371,6 +372,7 @@ PUT /api/identity/roles/{roleId:guid}
 PUT /api/identity/roles/{roleId:guid}/permissions
 PUT /api/identity/sessions/policy
 PUT /api/identity/users/{userId:guid}
+PUT /api/identity/users/{userId:guid}/access-expiry
 PUT /api/identity/users/{userId:guid}/kind
 PUT /api/identity/users/{userId:guid}/permissions
 PUT /api/identity/users/{userId:guid}/roles
