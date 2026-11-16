@@ -79,6 +79,10 @@ GET /api/events/{id:guid}
 GET /api/identity/auth/me
 GET /api/identity/auth/sessions
 GET /api/identity/auth/sessions/current
+GET /api/identity/auth/sso/providers
+GET /api/identity/auth/sso/{key}/callback
+GET /api/identity/auth/sso/{key}/metadata
+GET /api/identity/auth/sso/{key}/start
 GET /api/identity/groups/
 GET /api/identity/groups/mine/
 GET /api/identity/groups/mine/member-scope
@@ -245,6 +249,7 @@ POST /api/identity/auth/refresh
 POST /api/identity/auth/reset-password
 POST /api/identity/auth/sessions/current/activity
 POST /api/identity/auth/sessions/revoke-others
+POST /api/identity/auth/sso/{key}/acs
 POST /api/identity/groups/
 POST /api/identity/groups/mine/
 POST /api/identity/roles/
