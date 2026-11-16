@@ -326,6 +326,7 @@ POST /api/task-management/tasks/{id:guid}/archive
 POST /api/task-management/tasks/{id:guid}/comments
 POST /api/task-management/tasks/{id:guid}/criteria
 POST /api/task-management/tasks/{id:guid}/dependencies
+POST /api/task-management/tasks/{id:guid}/handoff
 POST /api/task-management/tasks/{id:guid}/restore
 POST /api/task-management/tasks/{id:guid}/save-as-template
 POST /api/task-management/tasks/{id:guid}/submit-review
